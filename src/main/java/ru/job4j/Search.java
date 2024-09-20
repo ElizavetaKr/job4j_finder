@@ -54,14 +54,14 @@ public class Search {
 
     public static List<Path> search(Path root, ArgsName param) throws IOException {
         Predicate<Path> condition = n -> {
-                String regex = param.get("n");
-                if (param.get("t").equals("mask")) {
-                    regex = regex. replace ("*", ".*")
-                            .replace("?", ".");
-                }
-                Pattern pattern = Pattern.compile(regex);
-                Matcher matcher = pattern.matcher(n.toString());
-                return matcher.matches();
+            String regex = param.get("n");
+            if (param.get("t").equals("mask")) {
+                regex = regex.replace("*", ".*")
+                        .replace("?", ".");
+            }
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(n.toString());
+            return matcher.matches();
         };
         SearchFiles searcher = new SearchFiles(condition);
         Files.walkFileTree(root, searcher);
@@ -71,7 +71,7 @@ public class Search {
     public static void record(ArgsName param) throws IOException {
 
         try (FileWriter writer = new FileWriter(param.get("o"), true)) {
-            if(param.get("t").equals("name")) {
+            if (param.get("t").equals("name")) {
                 writer.write(new File(param.get("n")).toString());
             } else {
                 List<Path> paths = search(Path.of(param.get("d")), param);
