@@ -1,0 +1,3 @@
+
+c:\projects\job4j_design\data\input.txt
+c:\projects\job4j_design\data\output.txt
