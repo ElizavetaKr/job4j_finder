@@ -56,7 +56,8 @@ public class Search {
         Predicate<Path> condition = n -> {
             String regex = param.get("n");
             if (param.get("t").equals("mask")) {
-                regex = regex.replace("*", ".*")
+                regex = regex.replace(".", "[.]")
+                        .replace("*", ".*")
                         .replace("?", ".");
             }
             Pattern pattern = Pattern.compile(regex);
